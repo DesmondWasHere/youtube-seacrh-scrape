@@ -6,6 +6,7 @@ def main_code(search_tag, secret_key):
   from xlwt import Workbook
   from selenium import webdriver
   from IPython.display import Image, display
+  from IPython.display import clear_output 
 
   options = webdriver.ChromeOptions()
   options.add_argument('-headless')
@@ -34,13 +35,15 @@ def main_code(search_tag, secret_key):
               print(f"Runtime of the program is {end - start}")
           if end_result == True or len(results) >= 100000:
               end = time.time()
+              clear_output()
               print(f"Runtime of the program is {end - start}")
-              driver.save_screenshot("image.png")
+#               driver.save_screenshot("image.png")
               break
         except:
           end = time.time()
+          clear_output()
           print(f"Runtime of the program is {end - start}")
-          driver.save_screenshot("image.png")
+#           driver.save_screenshot("image.png")
   get_video_results()
   end = time.time()
 
