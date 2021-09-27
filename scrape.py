@@ -75,7 +75,6 @@ def main_code(search_tag, secret_key):
           extensions = result.find_element_by_css_selector('#badges .ytd-badge-supported-renderer').text
       except:
           extensions = None
-      #print(title)
       index = results.index(result)
       print(f'Working on index {index+1}/{len(results)}',end = '')
 
@@ -130,6 +129,7 @@ def main_code(search_tag, secret_key):
           new_youtube_data.append([title, video_url, channel_title, channel_id, views, upload])
         string_list = ''
       except:
+        print("API LIMIT IS EXCEEDED")
         string_list = ''
         continue
 
