@@ -1,10 +1,9 @@
+!pip install xlsxwriter
+!apt-get update
+!apt install chromium-chromedriver
+!cp /usr/lib/chromium-browser/chromedriver /usr/bin
+!pip install selenium
 def main_code(search_tag, secret_key):  
-  !pip install xlsxwriter
-  !apt-get update
-  !apt install chromium-chromedriver
-  !cp /usr/lib/chromium-browser/chromedriver /usr/bin
-  !pip install selenium
-
   import time
   import xlwt
   import json, time
