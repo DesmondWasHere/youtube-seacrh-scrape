@@ -76,7 +76,7 @@ def main_code(search_tag, secret_key):
       except:
           extensions = None
       index = results.index(result)
-      print(f'Working on index {index+1}/{len(results)}',end = '')
+      print(f'Working on index {index+1}/{len(results)}',end = '\r')
 
       if title not in youtube_name:
           youtube_name.add(title)
