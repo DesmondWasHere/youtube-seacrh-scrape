@@ -77,7 +77,7 @@ def main_code(search_tag, secret_key):
           extensions = None
       index = results.index(result)
       if index+1 %100 == 0:
-        print(f'Working on index {index+1}/{len(results)}')
+        print(f'\n\nWorking on index {index+1}/{len(results)} \n\n')
       else:
         print(f'Working on index {index+1}/{len(results)}',end = '\r')
 
@@ -132,9 +132,10 @@ def main_code(search_tag, secret_key):
           new_youtube_data.append([title, video_url, channel_title, channel_id, views, upload])
         string_list = ''
       except:
-        print("API LIMIT IS EXCEEDED")
-        string_list = ''
-        continue
+        from google.colab import files
+        files.download('test.xlsx')
+        print("API LIMIT IS EXCEEDED, Please use new API KEY or wait until next day")
+        exit()
 
   df = pd.DataFrame(new_youtube_data, columns=cols)
   writer = pd.ExcelWriter('final_output.xlsx', engine='xlsxwriter')
@@ -143,4 +144,3 @@ def main_code(search_tag, secret_key):
 
   from google.colab import files
   files.download('final_output.xlsx') 
-  files.download('test.xlsx')
