@@ -80,9 +80,8 @@ def main_code(search_tag, secret_key):
           extensions = None
       index = results.index(result)
       if index+1 %100 == 0:
-        print(f'\n\nWorking on index {index+1}/{len(results)} \n\n')
-      else:
-        print(f'Working on index {index+1}/{len(results)}',end = '\r')
+        print(f'Working on index {index+1}/{len(results)}')
+    
 
       if title not in youtube_name:
           youtube_name.add(title)
@@ -138,7 +137,8 @@ def main_code(search_tag, secret_key):
         from google.colab import files
         files.download('test.xlsx')
         print("API LIMIT IS EXCEEDED, Please use new API KEY or wait until next day")
-        quit()
+        import sys
+        sys.exit()
 
   df = pd.DataFrame(new_youtube_data, columns=cols)
   writer = pd.ExcelWriter('final_output.xlsx', engine='xlsxwriter')
