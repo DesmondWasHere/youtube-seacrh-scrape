@@ -75,9 +75,9 @@ def main_code(search_tag, secret_key):
           extensions = result.find_element_by_css_selector('#badges .ytd-badge-supported-renderer').text
       except:
           extensions = None
-      print(title)
+      #print(title)
       index = results.index(result)
-      print(f'Working on index {index+1}/{len(results)}')
+      print(f'Working on index {index+1}/{len(results)}',end = '')
 
       if title not in youtube_name:
           youtube_name.add(title)
