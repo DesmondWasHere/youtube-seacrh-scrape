@@ -135,7 +135,7 @@ def main_code(search_tag, secret_key):
         from google.colab import files
         files.download('test.xlsx')
         print("API LIMIT IS EXCEEDED, Please use new API KEY or wait until next day")
-        exit()
+        quit()
 
   df = pd.DataFrame(new_youtube_data, columns=cols)
   writer = pd.ExcelWriter('final_output.xlsx', engine='xlsxwriter')
