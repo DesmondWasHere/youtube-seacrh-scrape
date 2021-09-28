@@ -122,24 +122,24 @@ def main_code(search_tag, secret_key):
     string_list = string_list+ (f'{i[32:]},')
     count = count+1
     if count%49 ==0:
-      #new chnages
-      try:
-        response = main(string_list)
-        for i in response['items']:
-          try:
-            title = i['snippet']['title'] #title
-            video_url = 'https://www.youtube.com/watch?v=' + i['id'] #url
-            channel_title = i['snippet']['channelTitle']
-            channel_id = i['snippet']['channelId']
-            views = i['statistics']['viewCount']
-            upload = i['snippet']['publishedAt']
-            new_youtube_data.append([title, video_url, channel_title, channel_id, views, upload])
-          except:
+        #new chnages
+        try:
+            response = main(string_list)
+            for i in response['items']:
+                try:
+                    title = i['snippet']['title'] #title
+                    video_url = 'https://www.youtube.com/watch?v=' + i['id'] #url
+                    channel_title = i['snippet']['channelTitle']
+                    channel_id = i['snippet']['channelId']
+                    views = i['statistics']['viewCount']
+                    upload = i['snippet']['publishedAt']
+                    new_youtube_data.append([title, video_url, channel_title, channel_id, views, upload])
+                except:
+                    continue
+            string_list = ''
+        except:
+            string_list = ''
             continue
-        string_list = ''
-      except:
-        string_list = ''
-        continue
         
   df = pd.DataFrame(new_youtube_data, columns=cols)
   writer = pd.ExcelWriter('final_output.xlsx', engine='xlsxwriter')
