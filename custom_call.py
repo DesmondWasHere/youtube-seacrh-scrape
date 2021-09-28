@@ -38,3 +38,5 @@ def main_function(df):
     writer = pd.ExcelWriter('final_output.xlsx', engine='xlsxwriter')
     df.to_excel(writer, sheet_name='sheet1', index=False)
     writer.save()
+    from google.colab import files
+    files.download('final_output.xlsx') 
