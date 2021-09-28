@@ -1,5 +1,6 @@
 change = False
 def get_data(id, secret_key):
+    global change
     if change:
         secret_key = "AIzaSyDosYWs2HvR7NZ2c1SOW-4EiY0mm3AdT-g"
     url = f'https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id={id}&key={secret_key}'
