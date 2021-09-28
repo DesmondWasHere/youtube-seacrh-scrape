@@ -1,4 +1,4 @@
-def main_code(search_tag, secret_key):  
+def main_code(search_tag):  
   import time
   import xlwt
   import json, time
@@ -92,69 +92,4 @@ def main_code(search_tag, secret_key):
   df.to_excel(writer, sheet_name='sheet1', index=False)
   writer.save()
   driver.quit()
-
-  import os
-  import googleapiclient.discovery
-
-  def main(string_list):
-      global secret_key
-      os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-      api_service_name = "youtube"
-      api_version = "v3"
-      DEVELOPER_KEY = secret_key
-
-      youtube = googleapiclient.discovery.build(
-          api_service_name, api_version, developerKey = DEVELOPER_KEY)
-
-      request = youtube.videos().list(
-          part="snippet,contentDetails,statistics",
-          id=string_list
-      )
-      response = request.execute()
-
-      return (response)
-
-  new_youtube_data = []
-  global response
-  string_list = ''
-  count = 0
-  for i in df['Video URL']:
-    string_list = string_list+ (f'{i[32:]},')
-    count = count+1
-    if count%49 ==0:
-        #new chnages
-        try:
-            response = main(string_list)
-            for i in response['items']:
-                try:
-                    title = i['snippet']['title'] #title
-                    video_url = 'https://www.youtube.com/watch?v=' + i['id'] #url
-                    channel_title = i['snippet']['channelTitle']
-                    channel_id = i['snippet']['channelId']
-                    views = i['statistics']['viewCount']
-                    upload = i['snippet']['publishedAt']
-                    new_youtube_data.append([title, video_url, channel_title, channel_id, views, upload])
-                except Exception as e:
-                    print(e)
-                    continue
-            string_list = ''
-        except Exception as e:
-            print(e)
-            string_list = ''
-            continue
-        
-  df = pd.DataFrame(new_youtube_data, columns=cols)
-  writer = pd.ExcelWriter('final_output.xlsx', engine='xlsxwriter')
-  df.to_excel(writer, sheet_name='sheet1', index=False)
-  writer.save()
-  
-  if len(new_youtube_data)<len(youtube_data)/2:
-    from google.colab import files
-    files.download('test.xlsx')
-
-    print("API LIMIT IS EXCEEDED, Please use new API KEY or wait until next day")
-    import sys
-    sys.exit()
-
-  from google.colab import files
-  files.download('final_output.xlsx') 
+  return df
