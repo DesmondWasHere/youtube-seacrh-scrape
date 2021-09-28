@@ -1,5 +1,7 @@
+change = False
 def get_data(id, secret_key):
-    global secret_key
+    if change:
+        secret_key = "AIzaSyDosYWs2HvR7NZ2c1SOW-4EiY0mm3AdT-g"
     url = f'https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id={id}&key={secret_key}'
     response = requests.get(url)
     try:
@@ -9,13 +11,12 @@ def get_data(id, secret_key):
     except Exception as e:
         print(e)
         print("Backup Key called")
-        secret_key = "AIzaSyDosYWs2HvR7NZ2c1SOW-4EiY0mm3AdT-g"
+        change = True
         return ["",""]
         
 def main_function(df, secret_key):
     import requests
     import pandas as pd
-    global secret_key
     cols = ["Video Title","Video URL","Channel Name","Channel URL","Number of views","Upload Date"]
     youtube_data = []
 
