@@ -1,4 +1,4 @@
-def get_data(id):
+def get_data(id, secret_key):
     global secret_key
     url = f'https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id={id}&key={secret_key}'
     response = requests.get(url)
@@ -12,7 +12,7 @@ def get_data(id):
         secret_key = "AIzaSyDosYWs2HvR7NZ2c1SOW-4EiY0mm3AdT-g"
         return ["",""]
         
-def main_function(df):
+def main_function(df, secret_key):
     import requests
     import pandas as pd
     global secret_key
@@ -26,7 +26,7 @@ def main_function(df):
         count = count + 1
         print(f'Working on {count}/{len(df)}')
         link = df.loc[i]['Video URL'][32:]
-        result = get_data(link)
+        result = get_data(link, secret_key)
         youtube_data.append([
             df.loc[i]['Video Title'],
             df.loc[i]['Video URL'],
