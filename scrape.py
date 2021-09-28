@@ -134,10 +134,12 @@ def main_code(search_tag, secret_key):
                     views = i['statistics']['viewCount']
                     upload = i['snippet']['publishedAt']
                     new_youtube_data.append([title, video_url, channel_title, channel_id, views, upload])
-                except:
+                except Exception as e:
+                    print(e)
                     continue
             string_list = ''
-        except:
+        except Exception as e:
+            print(e)
             string_list = ''
             continue
         
@@ -146,7 +148,7 @@ def main_code(search_tag, secret_key):
   df.to_excel(writer, sheet_name='sheet1', index=False)
   writer.save()
   
-  if len(new_youtube_data)<len(df)/2:
+  if len(new_youtube_data)<len(youtube_data)/2:
     from google.colab import files
     files.download('test.xlsx')
 
