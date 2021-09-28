@@ -136,7 +136,7 @@ def main_code(search_tag, secret_key):
            except:
             continue
         string_list = ''
-      except:
+     except:
         string_list = ''
         continue
         
