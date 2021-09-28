@@ -1,3 +1,5 @@
+import requests
+import pandas as pd
 change = False
 def get_data(id, secret_key):
     global change
@@ -16,8 +18,6 @@ def get_data(id, secret_key):
         return ["",""]
         
 def main_function(df, secret_key):
-    import requests
-    import pandas as pd
     cols = ["Video Title","Video URL","Channel Name","Channel URL","Number of views","Upload Date"]
     youtube_data = []
 
