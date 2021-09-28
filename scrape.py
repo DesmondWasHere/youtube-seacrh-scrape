@@ -79,8 +79,8 @@ def main_code(search_tag):
       except:
           extensions = None
       index = results.index(result)
-      if index+1 %100 == 0:
-        print(f'Working on index {index+1}/{len(results)}')
+#       if index+1 %100 == 0:
+      print(f'Working on index {index+1}/{len(results)}')
     
 
       if title not in youtube_name:
