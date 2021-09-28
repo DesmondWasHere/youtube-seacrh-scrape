@@ -1,4 +1,4 @@
-def main_function(df):
+def main_function(df, secret_key):
     import requests
     import pandas as pd
     def get_data(id):
