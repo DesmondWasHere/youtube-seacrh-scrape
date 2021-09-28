@@ -133,7 +133,7 @@ def main_code(search_tag, secret_key):
             views = i['statistics']['viewCount']
             upload = i['snippet']['publishedAt']
             new_youtube_data.append([title, video_url, channel_title, channel_id, views, upload])
-          except:
+         except:
             continue
         string_list = ''
      except:
